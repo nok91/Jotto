@@ -9,6 +9,14 @@ const GuessedWords = ({ guessedWords }) => {
                 Try to guess the  secret word!
             </div>
         );
+    } else {
+        contents = (
+            <div data-test="guessed-words">
+                {guessedWords.map((word, index) => (
+                    <div key={index} data-test="guessed-word"> {word} </div>
+                ))}
+            </div>
+        );
     }
     return (
         <div data-test="component-guessed-words">
