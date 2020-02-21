@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 const GuessedWords = ({ guessedWords }) => {
     let contents;
+
     if (guessedWords.length === 0) {
         contents = (
             <div data-test="guess-instructions">
@@ -10,11 +11,24 @@ const GuessedWords = ({ guessedWords }) => {
             </div>
         );
     } else {
+        const guessedWordsRow =  guessedWords.map((word, index) => (
+            <tr data-test="guessed-word" key={index}>
+                <td>{word.guessedWord}</td>
+                <td>{word.letterMatchCount}</td>
+            </tr>
+        ));
         contents = (
             <div data-test="guessed-words">
-                {guessedWords.map((word, index) => (
-                    <div key={index} data-test="guessed-word"> {word} </div>
-                ))}
+                <h3>Guessed Words</h3>
+                <table className="table table-sm">
+                    <thead className="thead-light">
+                        <tr><th>Guess</th><th>Matching Letters</th></tr>
+                    </thead>
+                    <tbody>
+                        {guessedWordsRow}
+                    </tbody>
+                </table>
+               
             </div>
         );
     }
